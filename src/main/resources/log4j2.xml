@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="${sys:user.home}/logs/bsc.log" filePattern="${sys:user.home}/logs/bsc-%d{yyyy-MM-dd}.zip">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="true">
+            <appender-ref ref="fileLogger" level="info" />
+            <appender-ref ref="console" level="info"/>
+        </Root>
+    </Loggers>
+</Configuration>
